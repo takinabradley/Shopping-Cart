@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import { MemoryRouter } from 'react-router-dom'
 
 it('renders', () => {
-  const view = render(
+  const {container} = render(
     <MemoryRouter>
       <Navbar />
     </MemoryRouter>
@@ -14,11 +14,11 @@ it('renders', () => {
 
   const navbar = screen.getByTestId('navbar')
   expect(navbar).toBeInTheDocument()
-  expect(view).toMatchSnapshot()
+  expect(container).toMatchSnapshot()
 })
 
 it('contains links to Home and Shop pages', () => {
-  const view = render(
+  const {container} = render(
     <MemoryRouter>
       <Navbar />
     </MemoryRouter>
@@ -27,5 +27,4 @@ it('contains links to Home and Shop pages', () => {
   const shopLink = screen.getByText('Shop')
   expect(homeLink).toHaveAttribute('href', '/')
   expect(shopLink).toHaveAttribute('href', '/shop')
-  expect(view).toMatchSnapshot()
 })
