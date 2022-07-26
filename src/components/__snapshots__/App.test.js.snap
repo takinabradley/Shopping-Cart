@@ -5,7 +5,6 @@ exports[`links can change the outlet component 1`] = `
   <div
     class="App"
   >
-    App
     <div
       data-testid="navbar"
     >
@@ -34,7 +33,6 @@ exports[`renders the outlet 1`] = `
   <div
     class="App"
   >
-    App
     <div
       data-testid="navbar"
     >
