@@ -8,7 +8,6 @@ export default function Shop() {
   
   return (
     <div data-testid='shop'>
-      Shop Page
       {products ? <ProductList products={products}/> : null}
     </div>
   )
