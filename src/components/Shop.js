@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import ProductList from "./ProductList";
-import products from '../products'
+
 import "./Shop.css";
 
 export default function Shop() {
+  const { products } = useOutletContext() || {}
+  console.log(products)
   const [state, setState] = useState({
-    products: products,
+    products,
     cart: {}
   })
 
