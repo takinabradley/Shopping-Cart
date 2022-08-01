@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import SteppableInput from "./SteppableInput"
-export default function ProductCard({ product, addToCart}) {
+export default function ProductCard({ product, addToCart }) {
   let maxStock = product.stock
   const [state, setState] = useState({
     stock: maxStock,
@@ -21,6 +21,7 @@ export default function ProductCard({ product, addToCart}) {
   function onAddToCart() {
     if(!state.quantity) return
     addToCart({ ...product, quantity: state.quantity })
+    setState({...state, quantity: 0}) //reset to 0 to avoid bugs
   }
 
   return (

@@ -1,34 +1,50 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import ProductList from "./ProductList";
+import products from '../products'
 import "./Shop.css";
 
 export default function Shop() {
-  // || ensures we're destructuring an object if function returns undefined
-  const { products, setProducts } = useOutletContext() || {};
-  const [cart, setCart] = useState({});
+  const [state, setState] = useState({
+    products: products,
+    cart: {}
+  })
 
-  function checkOut() {}
+  function checkOut() {
+    const newProducts = { ...state.products }
+    const currentCart = { ...state.cart }
+    
+    for (const product in currentCart) {
+      newProducts[product].stock = newProducts[product].stock - currentCart[product].quantity
+    }
+    console.log(newProducts)
+    setState({ products: newProducts, cart: {} })
+    /* setProducts(newProducts)
+    setCart({}) */
+  }
 
   function removeFromCart(product) {
-    const newCart = { ...cart };
+    const newCart = { ...state.cart };
     delete newCart[product.name];
-    setCart(newCart);
+    setState({...state, cart: newCart})
+    //setCart(newCart);
   }
 
   function addToCart(product) {
-    const newCart = { ...cart, [product.name]: product };
-    setCart(newCart);
+    const newCart = { ...state.cart, [product.name]: product };
+    setState({...state, cart: newCart})
+    //setCart(newCart);
     console.log("cart:", newCart);
   }
 
   const productList = products ? (
-    <ProductList products={products} addToCart={addToCart} />
+    <ProductList products={state.products} addToCart={addToCart} />
   ) : null;
 
   return (
     <div data-testid="shop">
       {productList}
+      <button onClick={checkOut}>Checkout</button>
     </div>
   );
 }
