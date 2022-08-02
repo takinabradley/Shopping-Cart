@@ -15,6 +15,15 @@ it('renders', () => {
   expect(shopComponent).toBeInTheDocument()
 })
 
+it('renders ProductsList component when recieves products', () => {
+  const products = {}
+  useOutletContext.mockReturnValue({ products })
+  render(<Shop />)
+  
+  const productList = screen.getByTestId('productList')
+  expect(productList).toBeInTheDocument()
+})
+
 it('renders products from outlet context', () => {
   const products = {
     product1: { name: 'product1', id: uniquid()},
@@ -30,3 +39,4 @@ it('renders products from outlet context', () => {
   expect(productList).toBeInTheDocument()
   expect(productCard.length).toBe(2)
 })
+

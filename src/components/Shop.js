@@ -6,7 +6,6 @@ import "./Shop.css";
 
 export default function Shop() {
   const { products } = useOutletContext() || {}
-  console.log(products)
   const [state, setState] = useState({
     products,
     cart: {}
@@ -21,22 +20,17 @@ export default function Shop() {
     }
     console.log(newProducts)
     setState({ products: newProducts, cart: {} })
-    /* setProducts(newProducts)
-    setCart({}) */
   }
 
   function removeFromCart(product) {
     const newCart = { ...state.cart };
     delete newCart[product.name];
     setState({...state, cart: newCart})
-    //setCart(newCart);
   }
 
   function addToCart(product) {
     const newCart = { ...state.cart, [product.name]: product };
     setState({...state, cart: newCart})
-    //setCart(newCart);
-    console.log("cart:", newCart);
   }
 
   const productList = products ? (
