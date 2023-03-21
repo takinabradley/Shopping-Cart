@@ -1,23 +1,26 @@
 import React from "react"
-import style from "./Header.module.css"
-export default function SiteHeader({ selected, handleLinkClick }) {
+import "./SiteHeader.scss"
+
+export default function SiteHeader({ navItems, selected, handleItemClick }) {
+  const navItemElements = navItems.map((item) => {
+    const isSelected = selected === item
+    const className = `
+      site-header__nav-item 
+      ${isSelected ? "site-header__nav-item--selected" : ""}
+    `
+
+    return (
+      <li className={className} onClick={handleItemClick} key={item}>
+        {item}
+      </li>
+    )
+  })
+
   return (
-    <header className={style.siteHeader}>
-      <nav className={style.siteNav}>
-        <ul className={style.siteNavLinks}>
-          <li
-            className={selected === "Home" ? style.selected : null}
-            onClick={handleLinkClick}
-          >
-            Home
-          </li>
-          <li
-            className={selected === "Shop" ? style.selected : null}
-            onClick={handleLinkClick}
-          >
-            Shop
-          </li>
-        </ul>
+    <header className="site-header">
+      <div className="site-header__logo">PROCESSOR</div>
+      <nav className="site-header__nav">
+        <ul className="site-header__nav-list">{navItemElements}</ul>
       </nav>
     </header>
   )
