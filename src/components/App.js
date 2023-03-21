@@ -1,17 +1,15 @@
-import { Outlet } from "react-router-dom"
-import Navbar from "./Navbar";
-import products from "../products"
-import { useState } from "react";
+import { useState } from "react"
 import "../App.css"
+import SiteHeader from "./SiteHeader"
 function App() {
-  console.log(products)
+  const [selectedPage, setSelectedPage] = useState("Home")
+  const selectPage = (e) => setSelectedPage(e.target.textContent)
+
   return (
     <div className="App">
-      <Navbar />
-      
-      <Outlet context={{products}}/>
+      <SiteHeader selected={selectedPage} handleLinkClick={selectPage} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
