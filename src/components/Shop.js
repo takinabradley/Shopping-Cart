@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import isEmpty from "../scripts/isEmpty";
 import ProductList from "./ProductList";
+import Cart from "./Cart";
 
-import "./Shop.css";
 
 export default function Shop() {
   const { products } = useOutletContext() || {}
@@ -37,10 +38,13 @@ export default function Shop() {
     <ProductList products={state.products} addToCart={addToCart} />
   ) : null;
 
+  const cart = (!isEmpty(state.cart)) ? (<Cart cart={state.cart} checkOut={checkOut} removeFromCart={removeFromCart}/>) : null
+
   return (
     <div data-testid="shop">
       {productList}
-      <button onClick={checkOut}>Checkout</button>
+      
+      {cart}
     </div>
   );
 }
