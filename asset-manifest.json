@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/shopping-cart/static/css/main.d35b18ef.css",
+    "main.js": "/shopping-cart/static/js/main.04d31d7a.js",
+    "static/media/adi-goldstein-tech.jpg": "/shopping-cart/static/media/adi-goldstein-tech.13ce7e138aeb3093a177.jpg",
+    "static/media/2.jpg": "/shopping-cart/static/media/2.7253851bab63601e89bd.jpg",
+    "static/media/1.jpg": "/shopping-cart/static/media/1.e16f4a9cdb693998916c.jpg",
+    "index.html": "/shopping-cart/index.html",
+    "main.d35b18ef.css.map": "/shopping-cart/static/css/main.d35b18ef.css.map",
+    "main.04d31d7a.js.map": "/shopping-cart/static/js/main.04d31d7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d35b18ef.css",
+    "static/js/main.04d31d7a.js"
+  ]
+}
