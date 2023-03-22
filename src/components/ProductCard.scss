@@ -13,6 +13,11 @@
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  transition: background-color ease-in-out 300ms;
+
+  &:hover {
+    background-color: rgb(53, 53, 53);
+  }
 
   & > * {
     flex: 3;
@@ -47,4 +52,8 @@
 // ShopPage
 .product-card--transparent-50 {
   background-color: rgb(black, 50%);
+
+  &:hover {
+    background-color: rgb(53, 53, 53, 60%);
+  }
 }
