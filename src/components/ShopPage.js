@@ -7,14 +7,14 @@ import getMockData from "../scripts/getMockData"
 import ProductBanner from "./ProductBanner"
 import ProductCard from "./ProductCard"
 
-const toProductBanners = (banners, products) => {
+const toProductBanners = (banners, products, index) => {
   const banner = (
-    <ProductBanner modifiers="--transparent-background">
+    <ProductBanner modifiers="transparent-background" key={index}>
       {products.map((product) => (
         <ProductCard
           key={product.id}
           product={product}
-          modifiers="--transparent-50"
+          modifiers="transparent-50"
         />
       ))}
     </ProductBanner>
@@ -49,7 +49,7 @@ export default function ShopPage() {
         `}
         buttonText="Learn More!"
         handleClick={() => console.log("hello")}
-        modifiers="--transparent-background"
+        modifiers="transparent-background"
       />
 
       {productBanners}

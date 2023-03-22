@@ -1,11 +1,11 @@
 import "./ProductCard.scss"
 import img2 from "../images/2.jpg"
-import createAddModifiers from "../scripts/createAddModifiers"
+import BEMNames from "../scripts/BEMNames"
 
-const addModifers = createAddModifiers("product-card")
+const modifyCard = BEMNames.makeBuildModifiersFromItem("product-card")
 export default function ProductCard({ product, modifiers }) {
   return (
-    <div key={product.id} className={`product-card ${addModifers(modifiers)}`}>
+    <div key={product.id} className={`product-card ${modifyCard(modifiers)}`}>
       <h2 className="product-card__title">{product.title}</h2>
       <div className="product-card__img-container">
         <img src={img2} alt="" className="product-card__img" />

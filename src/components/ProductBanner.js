@@ -1,10 +1,12 @@
 import ProductCard from "./ProductCard"
 import "./ProductBanner.scss"
-import createAddModifiers from "../scripts/createAddModifiers"
+import BEMNames from "../scripts/BEMNames"
 
-const addModifers = createAddModifiers("product-banner")
+const modifyBanner = BEMNames.makeBuildModifiersFromItem("product-banner")
 export default function ProductBanner({ children, modifiers }) {
   return (
-    <div className={`product-banner ${addModifers(modifiers)}`}>{children}</div>
+    <div className={`product-banner ${modifyBanner(modifiers)}`}>
+      {children}
+    </div>
   )
 }

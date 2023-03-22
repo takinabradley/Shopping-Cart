@@ -1,12 +1,16 @@
 import React from "react"
 import "./SiteHeader.scss"
+import BEMNames from "../scripts/BEMNames"
 
+const modifyNavItem = BEMNames.makeBuildModifiersFromItem(
+  "site-header__nav-item"
+)
 export default function SiteHeader({ navItems, selected, handleItemClick }) {
   const navItemElements = navItems.map((item) => {
     const isSelected = selected === item
     const className = `
-      site-header__nav-item 
-      ${isSelected ? "site-header__nav-item--selected" : ""}
+      site-header__nav-item
+      ${modifyNavItem(isSelected ? "selected" : "")}
     `
 
     return (
