@@ -1,0 +1,16 @@
+.product-banner {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+  justify-content: space-around;
+  gap: 16px;
+
+  & > * {
+    flex: 0 1 500px;
+  }
+}
+
+// ShopPage
+.product-banner--transparent-background {
+  background-color: rgb(black, 80%);
+}
