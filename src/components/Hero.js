@@ -1,9 +1,11 @@
 import React from "react"
 import "./Hero.scss"
+import createAddModifiers from "../scripts/createAddModifiers"
 
-function Hero({ image, heading, blurb, buttonText, handleClick, modifier }) {
+const addModifers = createAddModifiers("hero")
+function Hero({ image, heading, blurb, buttonText, handleClick, modifiers }) {
   return (
-    <div className={`hero ${modifier || ""}`}>
+    <div className={`hero ${addModifers(modifiers)}`}>
       <div className="hero__img-container">
         <img src={image} alt="featured product" className="hero__img" />
       </div>
