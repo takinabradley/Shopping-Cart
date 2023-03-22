@@ -1,9 +1,9 @@
 import React from "react"
 import "./Hero.scss"
 
-function Hero({ image, heading, blurb, handleClick, className }) {
+function Hero({ image, heading, blurb, buttonText, handleClick, modifier }) {
   return (
-    <div className={`hero ${className}`}>
+    <div className={`hero ${modifier || ""}`}>
       <div className="hero__img-container">
         <img src={image} alt="featured product" className="hero__img" />
       </div>
@@ -12,7 +12,7 @@ function Hero({ image, heading, blurb, handleClick, className }) {
         <h2 className="hero__heading">{heading}</h2>
         <p className="hero__blurb">{blurb}</p>
         <button className="hero__learn-more" onClick={handleClick}>
-          Learn More!
+          {buttonText}
         </button>
       </div>
     </div>
