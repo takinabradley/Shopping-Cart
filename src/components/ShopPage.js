@@ -9,7 +9,7 @@ import ProductCard from "./ProductCard"
 
 const toProductBanners = (banners, products) => {
   const banner = (
-    <ProductBanner modifyers="--transparent-background">
+    <ProductBanner modifiers="--transparent-background">
       {products.map((product) => (
         <ProductCard
           key={product.id}
