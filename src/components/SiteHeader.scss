@@ -1,14 +1,16 @@
 .site-header {
   box-sizing: border-box;
   min-height: 100px;
-  padding: 10px 5%;
+  padding: 1% 5%;
 
   color: white;
   background-color: black;
 
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 
   & * {
     box-sizing: border-box;
@@ -16,20 +18,15 @@
 
   &__left {
     display: flex;
+    flex-wrap: wrap;
     flex: 1;
     align-items: center;
-    gap: 32px;
-  }
-
-  &__right {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
+    gap: 5%;
   }
 
   &__logo {
     flex: 1;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bolder;
   }
 
@@ -40,17 +37,16 @@
   &__nav-list {
     margin: 0;
     padding: 0;
-
+    font-size: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 5%;
 
     list-style-type: none;
   }
 
   &__nav-item {
     font-weight: normal;
-    font-size: 20px;
     color: gainsboro;
     position: relative;
 
@@ -76,13 +72,21 @@
     }
   }
 
+  &__right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   &__toggle-cart {
     width: fit-content;
     border: 2px solid white;
     background: none;
     color: white;
-    padding: 10px 30px;
-    font-size: 16px;
+    padding: 0.7em 2em;
+    font-weight: bold;
+    font-size: 1rem;
     transition: all ease-in-out 300ms;
 
     &:hover {

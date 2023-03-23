@@ -3,10 +3,11 @@
   flex-wrap: wrap;
   background-color: black;
   justify-content: space-around;
-  gap: 16px;
+  gap: max(3%, 3em);
+  padding: max(3%, 3em);
 
   & > * {
-    flex: 0 1 500px;
+    flex: 1;
   }
 }
 
