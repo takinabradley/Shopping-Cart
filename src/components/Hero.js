@@ -1,11 +1,11 @@
 import React from "react"
 import "./Hero.scss"
-import BEMNames from "../scripts/BEMNames"
+import createBEM from "../scripts/BEMNames"
 
-const modifyHero = BEMNames.makeBuildModifiersFromItem("hero")
+const BEM = createBEM("hero")
 function Hero({ image, heading, blurb, buttonText, handleClick, modifiers }) {
   return (
-    <div className={`hero ${modifyHero(modifiers)}`}>
+    <div className={`hero ${BEM.bm(modifiers)}`}>
       <div className="hero__img-container">
         <img src={image} alt="featured product" className="hero__img" />
       </div>

@@ -1,12 +1,7 @@
-import ProductCard from "./ProductCard"
 import "./ProductBanner.scss"
-import BEMNames from "../scripts/BEMNames"
+import createBEM from "../scripts/BEMNames"
 
-const modifyBanner = BEMNames.makeBuildModifiersFromItem("product-banner")
+const BEM = createBEM("product-banner")
 export default function ProductBanner({ children, modifiers }) {
-  return (
-    <div className={`product-banner ${modifyBanner(modifiers)}`}>
-      {children}
-    </div>
-  )
+  return <div className={`product-banner ${BEM.bm(modifiers)}`}>{children}</div>
 }

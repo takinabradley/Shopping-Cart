@@ -1,16 +1,14 @@
 import React from "react"
 import "./SiteHeader.scss"
-import BEMNames from "../scripts/BEMNames"
+import createBEM from "../scripts/BEMNames"
 
-const modifyNavItem = BEMNames.makeBuildModifiersFromItem(
-  "site-header__nav-item"
-)
+const BEM = createBEM("site-header")
+const modifyNavItem = BEM.m(BEM.e("nav-item"))
 export default function SiteHeader({ navItems, selected, handleItemClick }) {
   const navItemElements = navItems.map((item) => {
     const isSelected = selected === item
-    const className = `
-      site-header__nav-item
-      ${modifyNavItem(isSelected ? "selected" : "")}
+    const className = `\
+      ${BEM.e("nav-item")} ${modifyNavItem(isSelected ? "selected" : "")}\
     `
 
     return (
@@ -21,10 +19,10 @@ export default function SiteHeader({ navItems, selected, handleItemClick }) {
   })
 
   return (
-    <header className="site-header">
-      <div className="site-header__logo">PROCESSOR</div>
-      <nav className="site-header__nav">
-        <ul className="site-header__nav-list">{navItemElements}</ul>
+    <header className={BEM.b}>
+      <div className={BEM.e("logo")}>PROCESSOR</div>
+      <nav className={BEM.e("nav")}>
+        <ul className={BEM.e("nav-list")}>{navItemElements}</ul>
       </nav>
     </header>
   )

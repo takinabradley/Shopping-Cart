@@ -1,45 +1,5 @@
 const isEmptyString = (item) => item === ""
 
-function makeBuildElementsWithModifiersFromBlock(block) {
-  const buildBlockElems = makeBuildElemsFromBlock(block)
-  return (elems, modifiers) => {
-    if (!elems || !modifiers) return
-    const elemsList = buildBlockElems(elems)
-    console.log(elemsList)
-    const completeElems = elemsList
-      .split(" ")
-      .reduce((elemsWithModifiers, elem) => {
-        modifiers.split(" ").forEach((modifier) => {
-          elemsWithModifiers.push(buildModifier(elem, modifier))
-        })
-
-        return elemsWithModifiers
-      }, [])
-    return completeElems.join(" ")
-  }
-}
-
-function makeBuildElementsAndModifiersFromBlock(block) {
-  return (elems, modifiers) => {
-    const buildBlockElems = makeBuildElemsFromBlock(block)
-    const buildBlockModifiers = makeBuildModifiersFromItem(block)
-    if (elems && modifiers) {
-      const builtElems = buildBlockElems(elems)
-      const builtModifiers = buildBlockModifiers(modifiers)
-      return builtElems + " " + builtModifiers
-    }
-
-    if (elems) {
-      return buildBlockElems(elems)
-    }
-
-    if (modifiers) {
-      return buildBlockModifiers(modifiers)
-    }
-  }
-}
-
-// same as createAddModifiers
 function makeBuildModifiersFromItem(item) {
   return (modifiers) => {
     if (typeof modifiers !== "string") return ""
@@ -48,43 +8,6 @@ function makeBuildModifiersFromItem(item) {
     return modifierList
       .map((modifier) => buildModifier(item, modifier))
       .join(" ")
-  }
-}
-
-function makeBuildElemsFromBlock(block) {
-  return (elemNames) => {
-    if (typeof elemNames !== "string") return ""
-    const elemList = elemNames.split(" ")
-    if (elemList.every(isEmptyString)) return ""
-    return elemList.map((elem) => buildElem(block, elem)).join(" ")
-  }
-}
-
-function makeBuildElementWithModifierFromBlock(block) {
-  return (elem, modifier) => {
-    if (elem && modifier) {
-      return buildModifier(buildElem(block, elem), modifier)
-    }
-
-    if (elem) {
-      return buildElem(block, elem)
-    }
-
-    if (modifier) {
-      return buildModifier(block, modifier)
-    }
-  }
-}
-
-function makeBuildModifierFromItem(item) {
-  return (modifier) => {
-    return buildModifier(item, modifier)
-  }
-}
-
-function makeBuildElemFromBlock(block) {
-  return (elem) => {
-    return buildElem(block, elem)
   }
 }
 
@@ -109,19 +32,65 @@ function buildBEM(block, elem, modifier) {
 const buildElem = (block, elem) => block + "__" + elem
 const buildModifier = (item, modifier) => item + "--" + modifier
 
-const BEMNames = {
-  buildElem,
-  buildModifier,
-  buildBEM,
-  makeBuildElemFromBlock,
-  makeBuildModifierFromItem,
-  makeBuildElementWithModifierFromBlock,
-  makeBuildElemsFromBlock,
-  makeBuildModifiersFromItem,
-  makeBuildElementsAndModifiersFromBlock,
-  makeBuildElementsWithModifiersFromBlock
+/* usage: 
+  
+  //create new BEM object with BEM.b as the block
+  const BEM = createBem('your-block')
+  BEM.b // 'your-block'
+
+  //create BEM string from element name
+  BEM.e('your-elem) // 'your-block__your-elem'
+
+  //create BEM element modifier
+  BEM.e('your-elem', 'sharp') //'your-block__your-elem--sharp'
+
+  // create BEM block modifier
+  BEM.e(null, 'pointy') //'your-block--pointy'
+
+  // better BEM block modifier alternative
+  BEM.bm('super sucky')
+
+  // better way to modify elements:
+  const modifierFunc = BEM.m(<block or elem to modify>)
+  modifierFunc('modifier1 modifier2')
+
+  Ex:
+  const modifyNavItem = BEM.m('block-name__nav-item')//or BEM.m(BEM.e('nav-item'))
+  modifyNavItem('mod1 mod2') // 'block-name__nav-item--mod2 block-name__nav-item--mod2'
+*/
+function createBEM(b) {
+  return {
+    // block
+    b,
+
+    // element
+    e(elem, modifier) {
+      if (elem && modifier) {
+        return buildBEM(this.b, elem, modifier)
+      }
+
+      if (elem) {
+        return buildElem(this.b, elem)
+      }
+
+      if (modifier) {
+        return buildModifier(this.b, modifier)
+      }
+    },
+
+    // modifier
+    m(item) {
+      return makeBuildModifiersFromItem(item)
+    },
+
+    // (block modifier)
+    bm(modifiers) {
+      const blockModifier = makeBuildModifiersFromItem(this.b)
+      return blockModifier(modifiers)
+    }
+  }
 }
 
-export default BEMNames
+export default createBEM
 
-export { makeBuildModifiersFromItem }
+export { buildElem, buildModifier, buildBEM, makeBuildModifiersFromItem }
