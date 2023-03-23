@@ -35,7 +35,7 @@ function SiteHeader({
       </div>
       <div className={BEM.e("right")}>
         <ToggleButton className={BEM.e("toggle-cart")} toggle={toggleCartOpen}>
-          Open Cart! ({numberOfCartItems})
+          Open Cart! {numberOfCartItems ? `(${numberOfCartItems})` : null}
         </ToggleButton>
       </div>
     </header>
