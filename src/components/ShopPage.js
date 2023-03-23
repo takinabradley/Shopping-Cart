@@ -7,36 +7,37 @@ import getMockData from "../scripts/getMockData"
 import ProductBanner from "./ProductBanner"
 import ProductCard from "./ProductCard"
 
-const toProductBanners = (banners, products, index) => {
-  const banner = (
-    <ProductBanner modifiers="transparent-background" key={index}>
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          modifiers="transparent-50"
-        />
-      ))}
-    </ProductBanner>
-  )
-  return [...banners, banner]
-}
-
-export default function ShopPage() {
+export default function ShopPage({ handleAddToCart }) {
   const [productTriplets, setProductTriplets] = useState([])
 
-  const productBanners = productTriplets.length
-    ? productTriplets.reduce(toProductBanners, [])
-    : null
+  const toProductBanners = (banners, products, index) => {
+    const banner = (
+      <ProductBanner modifiers="transparent-background" key={index}>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            modifiers="transparent-50"
+            handleAddToCart={handleAddToCart}
+          />
+        ))}
+      </ProductBanner>
+    )
+    return [...banners, banner]
+  }
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getMockData(6)
+      const data = await getMockData(8)
       const triplets = data.reduce(toTriplets, [])
       setProductTriplets(triplets)
     }
     getData()
   }, [])
+
+  const productBanners = productTriplets.length
+    ? productTriplets.reduce(toProductBanners, [])
+    : null
 
   return (
     <div className="shop-page">

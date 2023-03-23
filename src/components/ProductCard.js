@@ -3,16 +3,21 @@ import img2 from "../images/2.jpg"
 import createBEM from "../scripts/BEMNames"
 
 const BEM = createBEM("product-card")
-export default function ProductCard({ product, modifiers }) {
+export default function ProductCard({ product, handleAddToCart, modifiers }) {
   return (
-    <div key={product.id} className={`product-card ${BEM.bm(modifiers)}`}>
-      <h2 className="product-card__title">{product.title}</h2>
-      <div className="product-card__img-container">
-        <img src={img2} alt="" className="product-card__img" />
+    <div key={product.id} className={`${BEM.b} ${BEM.bm(modifiers)}`}>
+      <h2 className={BEM.e("title")}>{product.title}</h2>
+      <div className={BEM.e("img-container")}>
+        <img src={img2} alt="" className={BEM.e("img")} />
       </div>
-      <p className="product-card__description">{product.description}</p>
-      <div className="product-card__price">{product.price}</div>
-      <button className="product-card__add-to-cart">Add To Cart</button>
+      <p className={BEM.e("description")}>{product.description}</p>
+      <div className={BEM.e("price")}>{product.price}</div>
+      <button
+        className={BEM.e("add-to-cart")}
+        onClick={() => handleAddToCart(product)}
+      >
+        Add To Cart
+      </button>
     </div>
   )
 }
