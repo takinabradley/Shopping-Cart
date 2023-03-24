@@ -1,13 +1,19 @@
 import "../component-styles/ProductCard.scss"
 import img2 from "../images/2.jpg"
 import createBEM from "../scripts/BEMNames"
+import Card from "./Card"
 
-const BEM = createBEM("product-card")
-export default function ProductCard({ product, handleAddToCart, modifiers }) {
+// is this weird?
+function ProductCardContent({
+  product,
+  handleAddToCart,
+  blockName = "product-card"
+}) {
+  const BEM = createBEM(blockName)
   return (
-    <div key={product.id} className={`${BEM.b} ${BEM.bm(modifiers)}`}>
+    <>
       <div className={BEM.e("img-container")}>
-        <img src={img2} alt="" className={BEM.e("img")} />
+        <img src={img2} alt={product.title} className={BEM.e("img")} />
       </div>
       <h2 className={BEM.e("title")}>{product.title}</h2>
       <p className={BEM.e("description")}>{product.description}</p>
@@ -18,6 +24,14 @@ export default function ProductCard({ product, handleAddToCart, modifiers }) {
       >
         Add To Cart
       </button>
-    </div>
+    </>
+  )
+}
+
+export default function ProductCard({ product, handleAddToCart, modifiers }) {
+  return (
+    <Card modifiers={modifiers} overrideName={"product-card"}>
+      <ProductCardContent product={product} handleAddToCart={handleAddToCart} />
+    </Card>
   )
 }
