@@ -1,6 +1,6 @@
 import React from "react"
 import ToggleButton from "./ToggleButton"
-import "./SiteHeader.scss"
+import "../component-styles/SiteHeader.scss"
 import createBEM from "../scripts/BEMNames"
 
 const BEM = createBEM("site-header")

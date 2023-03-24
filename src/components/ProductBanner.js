@@ -1,3 +1,4 @@
+import "../component-styles/ProductBanner.scss"
 import "./ProductBanner.scss"
 import createBEM from "../scripts/BEMNames"
 

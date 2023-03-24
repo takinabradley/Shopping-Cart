@@ -1,5 +1,5 @@
 import React from "react"
-import "./Hero.scss"
+import "../component-styles/Hero.scss"
 import createBEM from "../scripts/BEMNames"
 
 const BEM = createBEM("hero")

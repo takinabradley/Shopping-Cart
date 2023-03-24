@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Hero from "./Hero"
 import img1 from "../images/1.jpg"
-import "./ShopPage.scss"
+import "../component-styles/ShopPage.scss"
 import toTriplets from "../scripts/toTriplets"
 import getMockData from "../scripts/getMockData"
 import ProductBanner from "./ProductBanner"

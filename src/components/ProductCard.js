@@ -1,4 +1,4 @@
-import "./ProductCard.scss"
+import "../component-styles/ProductCard.scss"
 import img2 from "../images/2.jpg"
 import createBEM from "../scripts/BEMNames"
 

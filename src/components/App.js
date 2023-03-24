@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./App.scss"
+import "../component-styles/App.scss"
 import Cart from "./Cart"
 import HomePage from "./HomePage"
 import ShopPage from "./ShopPage"
