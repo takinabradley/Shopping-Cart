@@ -2,7 +2,11 @@ import "../component-styles/Banner.scss"
 import createBEM from "../scripts/BEMNames"
 
 const BEM = createBEM("banner")
-export default function Banner({ children, modifiers }) {
+export default function Banner({ children, modifiers, overrideName }) {
+  if (overrideName) {
+    const BEM = createBEM(overrideName)
+    return <div className={`${BEM.b} ${BEM.bm(modifiers)}`}>{children}</div>
+  }
   return <div className={`${BEM.b} ${BEM.bm(modifiers)}`}>{children}</div>
 }
 
