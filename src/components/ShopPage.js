@@ -4,7 +4,7 @@ import img1 from "../images/1.jpg"
 import "../component-styles/ShopPage.scss"
 import toTriplets from "../scripts/toTriplets"
 import getMockData from "../scripts/getMockData"
-import ProductBanner from "./ProductBanner"
+import { ShopBanner } from "./Banner"
 import ProductCard from "./ProductCard"
 
 export default function ShopPage({ handleAddToCart }) {
@@ -12,7 +12,7 @@ export default function ShopPage({ handleAddToCart }) {
 
   const toProductBanners = (banners, products, index) => {
     const banner = (
-      <ProductBanner modifiers="transparent-background" key={index}>
+      <ShopBanner key={index}>
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -21,7 +21,7 @@ export default function ShopPage({ handleAddToCart }) {
             handleAddToCart={handleAddToCart}
           />
         ))}
-      </ProductBanner>
+      </ShopBanner>
     )
     return [...banners, banner]
   }

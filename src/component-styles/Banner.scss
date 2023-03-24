@@ -1,4 +1,7 @@
-.product-banner {
+.banner {
+}
+
+.banner--shop-banner {
   display: flex;
   flex-wrap: wrap;
   background-color: black;
@@ -11,7 +14,6 @@
   }
 }
 
-// ShopPage
-.product-banner--transparent-background {
+.banner--transparent-black-background {
   background-color: rgb(black, 80%);
 }
