@@ -9,7 +9,9 @@ export default function Banner({ children, modifiers }) {
 function ShopBanner({ children, modifiers }) {
   return (
     <Banner
-      modifiers={`shop-banner transparent-black-background ${modifiers || ""}`}
+      modifiers={`shop-banner transparent-black-background${
+        modifiers ? " " + modifiers : ""
+      }`}
     >
       {children}
     </Banner>
