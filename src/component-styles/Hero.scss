@@ -36,6 +36,9 @@
     margin: 0;
   }
 
+  &__blurb {
+    max-width: 80%;
+  }
   &__learn-more {
     width: fit-content;
     border: 2px solid white;
