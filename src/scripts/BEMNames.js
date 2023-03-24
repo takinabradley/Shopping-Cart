@@ -84,6 +84,9 @@ function createBEM(b) {
     },
 
     // (block modifier)
+    // FixMe?:
+    // It may be useful to allow this to take an array, as well as a string.
+    // the change could be made for the modifier build function too
     bm(modifiers) {
       const blockModifier = makeBuildModifiersFromItem(this.b)
       return blockModifier(modifiers)
