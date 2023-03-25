@@ -1,6 +1,5 @@
 import "../component-styles/Banner.scss"
-import createBEM from "../scripts/BEMNames"
-
+import createBEM from "@takinabradley/bem-names"
 const BEM = createBEM("banner")
 export default function Banner({ children, modifiers, overrideName }) {
   if (overrideName) {

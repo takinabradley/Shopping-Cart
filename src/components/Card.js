@@ -1,5 +1,5 @@
 import "../component-styles/Card.scss"
-import createBEM from "../scripts/BEMNames"
+import createBEM from "@takinabradley/bem-names"
 
 import React from "react"
 

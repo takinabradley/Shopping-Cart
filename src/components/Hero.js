@@ -1,6 +1,6 @@
 import React from "react"
 import "../component-styles/Hero.scss"
-import createBEM from "../scripts/BEMNames"
+import createBEM from "@takinabradley/bem-names"
 import Banner from "./Banner"
 
 const BEM = createBEM("hero")

@@ -1,6 +1,6 @@
 import "../component-styles/ProductCard.scss"
 import img2 from "../images/2.jpg"
-import createBEM from "../scripts/BEMNames"
+import createBEM from "@takinabradley/bem-names"
 import Card from "./Card"
 
 // is this weird?

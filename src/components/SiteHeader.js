@@ -1,7 +1,7 @@
 import React from "react"
 import ToggleButton from "./ToggleButton"
 import "../component-styles/SiteHeader.scss"
-import createBEM from "../scripts/BEMNames"
+import createBEM from "@takinabradley/bem-names"
 
 const BEM = createBEM("site-header")
 const modifyNavItem = BEM.m(BEM.e("nav-item"))
