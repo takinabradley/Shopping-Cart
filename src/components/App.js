@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useReducer, useState } from "react"
 import "../component-styles/App.scss"
 import Cart from "./Cart"
 import HomePage from "./HomePage"
 import ShopPage from "./ShopPage"
 import SiteHeader from "./SiteHeader"
-import ToggleButton from "./ToggleButton"
 import useToggle from "../hooks/useToggle"
+import cartReducer from "../reducers/cartReducer"
 
 const navItems = ["Home", "Shop"]
 const toNumberOfCartItems = (number, item) => {
@@ -18,47 +18,9 @@ function App() {
 
   const [cartOpen, toggleCartOpen] = useToggle(false)
 
-  const [cart, setCart] = useState({})
-  const addToCart = (product) => {
-    if (cart[product.id]) {
-      const newQuantity = cart[product.id].quantity + 1
-      setCart({
-        ...cart,
-        [product.id]: {
-          product: product,
-          quantity: newQuantity
-        }
-      })
-    } else {
-      setCart({
-        ...cart,
-        [product.id]: {
-          product: product,
-          quantity: 1
-        }
-      })
-    }
-  }
-
-  const removeFromCart = (product) => {
-    if (cart[product.id] && cart[product.id].quantity === 1) {
-      const newCart = { ...cart }
-      delete newCart[product.id]
-      setCart(newCart)
-    }
-
-    if (cart[product.id]) {
-      const newQuantity = cart[product.id].quantity - 1
-
-      setCart({
-        ...cart,
-        [product.id]: {
-          product: product,
-          quantity: newQuantity
-        }
-      })
-    }
-  }
+  const [cart, setCart] = useReducer(cartReducer, {})
+  const addToCart = (product) => setCart({ type: "add", product })
+  const removeFromCart = (product) => setCart({ type: "remove", product })
 
   const numberOfCartItems = Object.values(cart).reduce(toNumberOfCartItems, 0)
   return (
