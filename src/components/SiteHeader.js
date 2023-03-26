@@ -2,20 +2,21 @@ import React from "react"
 import ToggleButton from "./ToggleButton"
 import "../component-styles/SiteHeader.scss"
 import createBEM from "@takinabradley/bem-names"
+import Block from "./Block"
 
 const BEM = createBEM("site-header")
-const modifyNavItem = BEM.m(BEM.e("nav-item"))
 function SiteHeader({
   navItems,
   selected,
   handleItemClick,
   toggleCartOpen,
-  numberOfCartItems
+  numberOfCartItems,
+  modifiers
 }) {
   const navItemElements = navItems.map((item) => {
     const isSelected = selected === item
-    const className = `\
-      ${BEM.e("nav-item")} ${modifyNavItem(isSelected ? "selected" : "")}\
+    const className = `
+      ${BEM.e("nav-item")} ${isSelected ? BEM.e("nav-item", "selected") : ""}
     `
 
     return (
@@ -26,7 +27,7 @@ function SiteHeader({
   })
 
   return (
-    <header className={BEM.b}>
+    <Block BEM={BEM} modifiers={modifiers} type="header">
       <div className={BEM.e("left")}>
         <div className={BEM.e("logo")}>PROCESSOR</div>
         <nav className={BEM.e("nav")}>
@@ -38,7 +39,7 @@ function SiteHeader({
           Open Cart! {numberOfCartItems ? `(${numberOfCartItems})` : null}
         </ToggleButton>
       </div>
-    </header>
+    </Block>
   )
 }
 

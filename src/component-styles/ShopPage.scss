@@ -1,18 +1,21 @@
 .shop-page {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 100px);
   gap: 3rem;
-  background-color: black;
 
   background-image: url(../images/adi-goldstein-tech.jpg);
   background-size: cover;
 
-  & > .hero {
-    flex: 1;
-  }
+  &__banner {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(black, 80%);
+    justify-content: space-around;
+    gap: max(3%, 3em);
+    padding: max(3%, 3em);
 
-  & > .product-banner {
-    flex: 10;
+    & > * {
+      flex: 1 1 31%;
+    }
   }
 }

@@ -4,15 +4,17 @@ import img1 from "../images/1.jpg"
 import "../component-styles/ShopPage.scss"
 import toTriplets from "../scripts/toTriplets"
 import getMockData from "../scripts/getMockData"
-import { ShopBanner } from "./Banner"
 import ProductCard from "./ProductCard"
+import createBEM from "@takinabradley/bem-names"
+import Block from "./Block"
 
-export default function ShopPage({ handleAddToCart }) {
+const BEM = createBEM("shop-page")
+export default function ShopPage({ handleAddToCart, modifiers }) {
   const [productTriplets, setProductTriplets] = useState([])
 
   const toProductBanners = (banners, products, index) => {
     const banner = (
-      <ShopBanner key={index}>
+      <div className={BEM.e("banner")} key={index}>
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -21,8 +23,9 @@ export default function ShopPage({ handleAddToCart }) {
             handleAddToCart={handleAddToCart}
           />
         ))}
-      </ShopBanner>
+      </div>
     )
+
     return [...banners, banner]
   }
 
@@ -40,7 +43,7 @@ export default function ShopPage({ handleAddToCart }) {
     : null
 
   return (
-    <div className="shop-page">
+    <Block BEM={BEM} modifiers={modifiers}>
       <Hero
         image={img1}
         heading="Lorem ipsum dolor sit amet."
@@ -50,10 +53,11 @@ export default function ShopPage({ handleAddToCart }) {
         `}
         buttonText="Learn More!"
         handleClick={() => console.log("hello")}
-        modifiers="transparent-background"
+        modifiers="transparent-black-background"
       />
 
+      <div className={BEM.e("banners")}></div>
       {productBanners}
-    </div>
+    </Block>
   )
 }

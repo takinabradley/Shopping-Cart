@@ -1,8 +1,12 @@
+import createBEM from "@takinabradley/bem-names"
 import React from "react"
-export default function HomePage() {
+import Block from "./Block"
+
+const BEM = createBEM("home")
+export default function HomePage({ modifiers }) {
   return (
-    <div id="home">
-      <h1>I'm the home page!</h1>
-    </div>
+    <Block BEM={BEM} modifiers={modifiers}>
+      <h1 className={BEM.e("heading")}>I'm the home page!</h1>
+    </Block>
   )
 }

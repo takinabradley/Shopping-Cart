@@ -1,12 +1,11 @@
-import React from "react"
 import "../component-styles/Hero.scss"
 import createBEM from "@takinabradley/bem-names"
-import Banner from "./Banner"
+import Block from "./Block"
 
 const BEM = createBEM("hero")
 function Hero({ image, heading, blurb, buttonText, handleClick, modifiers }) {
   return (
-    <Banner overrideName={BEM.b} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers}>
       <div className={BEM.e("img-container")}>
         <img src={image} alt="featured product" className={BEM.e("img")} />
       </div>
@@ -18,7 +17,7 @@ function Hero({ image, heading, blurb, buttonText, handleClick, modifiers }) {
           {buttonText}
         </button>
       </div>
-    </Banner>
+    </Block>
   )
 }
 

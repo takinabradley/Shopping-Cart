@@ -1,17 +1,12 @@
 import "../component-styles/ProductCard.scss"
 import img2 from "../images/2.jpg"
 import createBEM from "@takinabradley/bem-names"
-import Card from "./Card"
+import Block from "./Block"
 
-// is this weird?
-function ProductCardContent({
-  product,
-  handleAddToCart,
-  blockName = "product-card"
-}) {
-  const BEM = createBEM(blockName)
+const BEM = createBEM("product-card")
+export default function ProductCard({ product, handleAddToCart, modifiers }) {
   return (
-    <>
+    <Block BEM={BEM} modifiers={modifiers}>
       <div className={BEM.e("img-container")}>
         <img src={img2} alt={product.title} className={BEM.e("img")} />
       </div>
@@ -24,14 +19,6 @@ function ProductCardContent({
       >
         Add To Cart
       </button>
-    </>
-  )
-}
-
-export default function ProductCard({ product, handleAddToCart, modifiers }) {
-  return (
-    <Card modifiers={modifiers} overrideName={"product-card"}>
-      <ProductCardContent product={product} handleAddToCart={handleAddToCart} />
-    </Card>
+    </Block>
   )
 }
