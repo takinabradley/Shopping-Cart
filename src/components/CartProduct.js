@@ -30,6 +30,9 @@ export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
           onInput={(e) => {
             setInputQuantity(e.target.value)
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") setItem(product, parseInt(inputQuantity))
+          }}
           onClick={() => quantityInput.current.focus()}
           onBlur={() => setItem(product, parseInt(inputQuantity))}
         />
