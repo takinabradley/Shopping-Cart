@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/shopping-cart/static/css/main.c10c550b.css",
-    "main.js": "/shopping-cart/static/js/main.d5d05163.js",
+    "main.css": "/shopping-cart/static/css/main.b128156c.css",
+    "main.js": "/shopping-cart/static/js/main.a4f6a118.js",
     "static/media/adi-goldstein-tech.jpg": "/shopping-cart/static/media/adi-goldstein-tech.13ce7e138aeb3093a177.jpg",
     "static/media/2.jpg": "/shopping-cart/static/media/2.7253851bab63601e89bd.jpg",
+    "static/media/3.jpg": "/shopping-cart/static/media/3.13aff1ec6ea8c35005f4.jpg",
     "static/media/1.jpg": "/shopping-cart/static/media/1.e16f4a9cdb693998916c.jpg",
     "index.html": "/shopping-cart/index.html",
-    "main.c10c550b.css.map": "/shopping-cart/static/css/main.c10c550b.css.map",
-    "main.d5d05163.js.map": "/shopping-cart/static/js/main.d5d05163.js.map"
+    "main.b128156c.css.map": "/shopping-cart/static/css/main.b128156c.css.map",
+    "main.a4f6a118.js.map": "/shopping-cart/static/js/main.a4f6a118.js.map"
   },
   "entrypoints": [
-    "static/css/main.c10c550b.css",
-    "static/js/main.d5d05163.js"
+    "static/css/main.b128156c.css",
+    "static/js/main.a4f6a118.js"
   ]
 }
