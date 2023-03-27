@@ -1,5 +1,6 @@
 .cart {
   color: white;
+  padding: 1em;
 
   &__items {
     display: flex;
@@ -38,10 +39,14 @@
     padding: 0.7em 2em;
     font-weight: bold;
     font-size: 1rem;
-    transition: all ease-in-out 300ms;
+    transition: background-color ease-in-out 300ms;
 
     &:hover {
       background-color: rgb(53, 53, 53);
+    }
+
+    &:active {
+      outline: 1px solid white;
     }
   }
 }
