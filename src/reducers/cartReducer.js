@@ -35,7 +35,11 @@ export default function cartReducer(prevCart, action) {
       }
 
     case "set":
-      if (action.quantity !== 0) {
+      if (action.quantity === 0 || isNaN(action.quantity)) {
+        const newCart = { ...prevCart }
+        delete newCart[productID]
+        return newCart
+      } else {
         return {
           ...prevCart,
           [productID]: {
@@ -43,10 +47,6 @@ export default function cartReducer(prevCart, action) {
             quantity: action.quantity
           }
         }
-      } else {
-        const newCart = { ...prevCart }
-        delete newCart[productID]
-        return newCart
       }
 
     default:

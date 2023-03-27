@@ -1,11 +1,18 @@
 import createBEM from "@takinabradley/bem-names"
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Block from "./Block"
 import img3 from "../images/3.jpg"
 import "../component-styles/CartProduct.scss"
 const BEM = createBEM("cart-product")
 export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
   const { product, quantity } = item
+
+  const [inputQuantity, setInputQuantity] = useState(item.quantity)
+  const quantityInput = useRef()
+  useEffect(() => {
+    setInputQuantity(item.quantity)
+  }, [item.quantity])
+
   return (
     <Block BEM={BEM} modifiers={modifiers}>
       <div className={BEM.e("img-container")}>
@@ -18,8 +25,13 @@ export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
           type="number"
           name="quantity"
           className={BEM.e("quantity")}
-          value={quantity}
-          onChange={(e) => setItem(product, parseInt(e.target.value))}
+          value={inputQuantity}
+          ref={quantityInput}
+          onInput={(e) => {
+            setInputQuantity(e.target.value)
+          }}
+          onClick={() => quantityInput.current.focus()}
+          onBlur={() => setItem(product, parseInt(inputQuantity))}
         />
         {/* <div type="number" name="quantity" className={BEM.e("quantity")}>
           {quantity}
