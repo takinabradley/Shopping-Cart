@@ -34,6 +34,21 @@ export default function cartReducer(prevCart, action) {
         }
       }
 
+    case "set":
+      if (action.quantity !== 0) {
+        return {
+          ...prevCart,
+          [productID]: {
+            product: action.product,
+            quantity: action.quantity
+          }
+        }
+      } else {
+        const newCart = { ...prevCart }
+        delete newCart[productID]
+        return newCart
+      }
+
     default:
       return prevCart
   }

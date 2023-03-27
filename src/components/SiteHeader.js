@@ -10,6 +10,7 @@ function SiteHeader({
   selected,
   handleItemClick,
   toggleCartOpen,
+  isCartOpen,
   numberOfCartItems,
   modifiers
 }) {
@@ -36,7 +37,8 @@ function SiteHeader({
       </div>
       <div className={BEM.e("right")}>
         <ToggleButton className={BEM.e("toggle-cart")} toggle={toggleCartOpen}>
-          Open Cart! {numberOfCartItems ? `(${numberOfCartItems})` : null}
+          {isCartOpen ? "Close Cart!" : "Open Cart!"}{" "}
+          {numberOfCartItems ? `(${numberOfCartItems})` : null}
         </ToggleButton>
       </div>
     </Block>
