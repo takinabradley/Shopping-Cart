@@ -49,11 +49,12 @@ function App() {
       </div>
 
       <div
-        className={`
+        className={`\
             ${BEM.e("sidebar")} ${!cartOpen ? BEM.e("sidebar", "closed") : ""}\
           `}
+        data-testid={BEM.e("sidebar")}
       >
-        {cartOpen ? <Cart cart={cart} setCartItems={setItemInCart} /> : null}
+        <Cart cart={cart} setCartItems={setItemInCart} />
       </div>
     </div>
   )
