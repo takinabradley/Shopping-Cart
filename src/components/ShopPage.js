@@ -43,7 +43,7 @@ export default function ShopPage({ handleAddToCart, modifiers }) {
     : null
 
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid={BEM.b}>
       <Hero
         image={img1}
         heading="Lorem ipsum dolor sit amet."
