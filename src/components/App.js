@@ -29,7 +29,7 @@ function App() {
 
   const numberOfCartItems = Object.values(cart).reduce(toNumberOfCartItems, 0)
   return (
-    <div className={BEM.b}>
+    <div className={BEM.b} data-testid="app">
       <div className={BEM.e("app-content")}>
         <SiteHeader
           selected={selectedPage}
