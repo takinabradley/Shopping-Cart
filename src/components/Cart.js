@@ -12,7 +12,7 @@ export default function Cart({ cart, setCartItems, modifiers }) {
     return total + price * quantity
   }, 0)
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid="cart">
       <div className={BEM.e("items")}>
         {Object.values(cart).map((item) => {
           return (

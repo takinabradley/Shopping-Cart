@@ -7,7 +7,7 @@ import img1 from "../images/1.jpg"
 const BEM = createBEM("home")
 export default function HomePage({ modifiers }) {
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid="home">
       <Hero
         image={img1}
         heading="Hero Banner"

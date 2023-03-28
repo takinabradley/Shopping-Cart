@@ -28,7 +28,7 @@ function SiteHeader({
   })
 
   return (
-    <Block BEM={BEM} modifiers={modifiers} type="header">
+    <Block BEM={BEM} modifiers={modifiers} type="header" testid={BEM.b}>
       <div className={BEM.e("left")}>
         <div className={BEM.e("logo")}>PROCESSOR</div>
         <nav className={BEM.e("nav")}>
