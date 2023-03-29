@@ -6,7 +6,7 @@ import Block from "./Block"
 const BEM = createBEM("product-card")
 export default function ProductCard({ product, handleAddToCart, modifiers }) {
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid={BEM.b}>
       <div className={BEM.e("img-container")}>
         <img src={img2} alt={product.title} className={BEM.e("img")} />
       </div>
