@@ -6,7 +6,7 @@ import Block from "./Block"
 
 const BEM = createBEM("site-header")
 function SiteHeader({
-  navItems,
+  navItems = [],
   selected,
   handleItemClick,
   toggleCartOpen,
