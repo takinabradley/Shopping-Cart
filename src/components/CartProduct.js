@@ -4,7 +4,7 @@ import Block from "./Block"
 import img3 from "../images/3.jpg"
 import "../component-styles/CartProduct.scss"
 const BEM = createBEM("cart-product")
-export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
+export default function CartProduct({ item, modifiers, setItem }) {
   const { product, quantity } = item
 
   const [inputQuantity, setInputQuantity] = useState(quantity)
@@ -14,7 +14,7 @@ export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
   }, [item.quantity])
 
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid={BEM.b}>
       <div className={BEM.e("img-container")}>
         <img src={img3} alt={product.title} className={BEM.e("img")} />
       </div>
