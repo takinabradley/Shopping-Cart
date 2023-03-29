@@ -2,7 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
-import { act } from "react-dom/test-utils"
+import { act } from "@testing-library/react"
 import App from "./App"
 import {
   toBeVisible,
@@ -72,13 +72,14 @@ it("renders the home page again when the Home link is clicked", async () => {
   const shopLink = screen.getByText("Shop")
   const homeLink = screen.getByText("Home")
   const homePage = screen.getByTestId("home")
-  await act(() => userEvent.click(shopLink))
+  // useeffect should run and update the state of ShopPage when the user clicks
+  await act(async () => await userEvent.click(shopLink))
 
   const shopPage = await screen.findByTestId("shop-page")
   expect(shopPage).toBeInTheDocument()
   expect(homePage).not.toBeInTheDocument()
 
-  await act(() => userEvent.click(homeLink))
+  await userEvent.click(homeLink)
   const newHomePage = await screen.findByTestId("home")
   expect(shopPage).not.toBeInTheDocument()
   expect(newHomePage).toBeInTheDocument()
