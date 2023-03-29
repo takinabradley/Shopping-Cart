@@ -5,7 +5,7 @@ import Block from "./Block"
 const BEM = createBEM("hero")
 function Hero({ image, heading, blurb, buttonText, handleClick, modifiers }) {
   return (
-    <Block BEM={BEM} modifiers={modifiers}>
+    <Block BEM={BEM} modifiers={modifiers} testid={BEM.b}>
       <div className={BEM.e("img-container")}>
         <img src={image} alt="featured product" className={BEM.e("img")} />
       </div>
