@@ -7,7 +7,7 @@ const BEM = createBEM("cart-product")
 export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
   const { product, quantity } = item
 
-  const [inputQuantity, setInputQuantity] = useState(item.quantity)
+  const [inputQuantity, setInputQuantity] = useState(quantity)
   const quantityInput = useRef()
   useEffect(() => {
     setInputQuantity(item.quantity)
@@ -36,9 +36,6 @@ export default function CartProduct({ item, modifiers, setItem, setQuantity }) {
           onClick={() => quantityInput.current.focus()}
           onBlur={() => setItem(product, parseInt(inputQuantity))}
         />
-        {/* <div type="number" name="quantity" className={BEM.e("quantity")}>
-          {quantity}
-        </div> */}
       </div>
     </Block>
   )
