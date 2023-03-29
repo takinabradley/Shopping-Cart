@@ -6,7 +6,6 @@ import CartProduct from "./CartProduct"
 const BEM = createBEM("cart")
 export default function Cart({ cart, setCartItems, modifiers }) {
   const total = Object.values(cart).reduce((total, item) => {
-    console.log(item)
     const quantity = item.quantity
     const price = item.product.price.slice(1) // remove dollar sign
     return total + price * quantity
