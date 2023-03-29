@@ -56,8 +56,7 @@ export default function ShopPage({ handleAddToCart, modifiers }) {
         modifiers="transparent-black-background"
       />
 
-      <div className={BEM.e("banners")}></div>
-      {productBanners}
+      <div className={BEM.e("banners")}>{productBanners}</div>
     </Block>
   )
 }
