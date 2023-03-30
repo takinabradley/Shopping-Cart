@@ -14,14 +14,15 @@ function SiteHeader({
   numberOfCartItems,
   modifiers
 }) {
-  const navItemElements = navItems.map((item) => {
+  const navItemElements = navItems.map((item, index) => {
+    const key = typeof item === "string" ? item : index
     const isSelected = selected === item
     const className = `
       ${BEM.e("nav-item")} ${isSelected ? BEM.e("nav-item", "selected") : ""}
     `
 
     return (
-      <li className={className} onClick={handleItemClick} key={item}>
+      <li className={className} onClick={handleItemClick} key={key}>
         {item}
       </li>
     )
