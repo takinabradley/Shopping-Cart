@@ -7,18 +7,18 @@ import SiteHeader from "./SiteHeader"
 import useToggle from "../hooks/useToggle"
 import cartReducer from "../reducers/cartReducer"
 import createBEM from "@takinabradley/bem-names"
-import ToggleButton from "./ToggleButton"
+import { Link, Outlet } from "react-router-dom"
 
-const navItems = ["Home", "Shop"]
+const navItems = [<Link to="/home">Home</Link>, <Link to="/shop">Shop</Link>]
+/* const navItems = ["Home", "Shop"] */
 const toNumberOfCartItems = (number, item) => {
   return number + item.quantity
 }
 
 const BEM = createBEM("app")
 function App() {
-  const [selectedPage, setSelectedPage] = useState("Home")
-  const selectPage = (e) => setSelectedPage(e.target.textContent)
-
+  const [selectedPage, setSelectedPage] = useState("")
+  const selectPage = (e) => setSelectedPage(e.currentTarget.textContent)
   const [cartOpen, toggleCartOpen] = useToggle(false)
 
   const [cart, setCart] = useReducer(cartReducer, {})
@@ -39,12 +39,12 @@ function App() {
           toggleCartOpen={toggleCartOpen}
           numberOfCartItems={numberOfCartItems}
         />
-
         <main className={BEM.e("page-container")}>
-          {selectedPage === "Home" ? <HomePage /> : null}
+          <Outlet context={{ handleAddToCart: addToCart }} />
+          {/* {selectedPage === "Home" ? <HomePage /> : null}
           {selectedPage === "Shop" ? (
             <ShopPage handleAddToCart={addToCart} />
-          ) : null}
+          ) : null} */}
         </main>
       </div>
 

@@ -5,8 +5,11 @@ import userEvent from "@testing-library/user-event"
 import { act } from "@testing-library/react"
 import ShopPage from "./ShopPage"
 import getMockData from "../scripts/getMockData"
-jest.mock("../scripts/getMockData.js")
+import { Outlet } from "react-router-dom"
+import { MemoryRouter } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
+jest.mock("../scripts/getMockData.js")
 const mockData1 = [
   {
     id: 0,
@@ -64,9 +67,27 @@ const mockData7 = [
   }
 ]
 
+const RenderRouteWithOutletContext = ({ context, children }) => {
+  return (
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<Outlet context={context} />}>
+          <Route index element={children} />
+        </Route>
+      </Routes>
+    </MemoryRouter>
+  )
+}
+
+const contextObj = { handleAddToCart: () => {} }
+
 it("renders", async () => {
   getMockData.mockReturnValueOnce([])
-  render(<ShopPage />)
+  render(
+    <RenderRouteWithOutletContext context={contextObj}>
+      <ShopPage />
+    </RenderRouteWithOutletContext>
+  )
   const shopPage = await screen.findByTestId("shop-page")
   expect(shopPage).toBeInTheDocument()
 })
@@ -74,7 +95,11 @@ it("renders", async () => {
 it("has class name of .shop-page", async () => {
   getMockData.mockReturnValueOnce([])
 
-  render(<ShopPage />)
+  render(
+    <RenderRouteWithOutletContext context={contextObj}>
+      <ShopPage />
+    </RenderRouteWithOutletContext>
+  )
   const shopPage = await screen.findByTestId("shop-page")
   expect(shopPage).toHaveClass("shop-page")
 })
@@ -82,7 +107,11 @@ it("has class name of .shop-page", async () => {
 it("accepts class modifiers", async () => {
   getMockData.mockReturnValueOnce([])
 
-  render(<ShopPage modifiers="terminal-green" />)
+  render(
+    <RenderRouteWithOutletContext context={contextObj}>
+      <ShopPage modifiers="terminal-green" />
+    </RenderRouteWithOutletContext>
+  )
   const shopPage = await screen.findByTestId("shop-page")
   expect(shopPage).toHaveClass("shop-page shop-page--terminal-green")
 })
@@ -90,7 +119,11 @@ it("accepts class modifiers", async () => {
 it("shows a hero banner", async () => {
   getMockData.mockReturnValueOnce([])
 
-  render(<ShopPage />)
+  render(
+    <RenderRouteWithOutletContext context={contextObj}>
+      <ShopPage />
+    </RenderRouteWithOutletContext>
+  )
   const shopPage = await screen.findByTestId("shop-page")
   expect(shopPage).toContainElement(screen.getByTestId("hero"))
 })
@@ -98,7 +131,11 @@ it("shows a hero banner", async () => {
 it("renders no banners when there's no data", async () => {
   getMockData.mockReturnValueOnce([])
 
-  render(<ShopPage />)
+  render(
+    <RenderRouteWithOutletContext context={contextObj}>
+      <ShopPage />
+    </RenderRouteWithOutletContext>
+  )
   const shopPage = await screen.findByTestId("shop-page")
   const bannerContainer = shopPage.querySelector(".shop-page__banners")
   expect(bannerContainer.childElementCount).toBe(0)
@@ -108,7 +145,11 @@ describe("renders banners when there is data", () => {
   it("one banner, one item", async () => {
     getMockData.mockReturnValueOnce(mockData1)
 
-    render(<ShopPage />)
+    render(
+      <RenderRouteWithOutletContext context={contextObj}>
+        <ShopPage />
+      </RenderRouteWithOutletContext>
+    )
     const shopPage = await screen.findByTestId("shop-page")
     const bannerContainer = shopPage.querySelector(".shop-page__banners")
     expect(bannerContainer.childElementCount).toBe(1)
@@ -117,7 +158,11 @@ describe("renders banners when there is data", () => {
   it("one banner, three items", async () => {
     getMockData.mockReturnValueOnce(mockData2)
 
-    render(<ShopPage />)
+    render(
+      <RenderRouteWithOutletContext context={contextObj}>
+        <ShopPage />
+      </RenderRouteWithOutletContext>
+    )
     const shopPage = await screen.findByTestId("shop-page")
     const bannerContainer = shopPage.querySelector(".shop-page__banners")
     expect(bannerContainer.childElementCount).toBe(1)
@@ -126,7 +171,11 @@ describe("renders banners when there is data", () => {
   it("renders a new banner after more than three items in the last", async () => {
     getMockData.mockReturnValueOnce(mockData4)
 
-    render(<ShopPage />)
+    render(
+      <RenderRouteWithOutletContext context={contextObj}>
+        <ShopPage />
+      </RenderRouteWithOutletContext>
+    )
     const shopPage = await screen.findByTestId("shop-page")
     const bannerContainer = shopPage.querySelector(".shop-page__banners")
     expect(bannerContainer.childElementCount).toBe(2)
@@ -135,7 +184,11 @@ describe("renders banners when there is data", () => {
   it("renders more than two banners", async () => {
     getMockData.mockReturnValueOnce(mockData7)
 
-    render(<ShopPage />)
+    render(
+      <RenderRouteWithOutletContext context={contextObj}>
+        <ShopPage />
+      </RenderRouteWithOutletContext>
+    )
     const shopPage = await screen.findByTestId("shop-page")
     const bannerContainer = shopPage.querySelector(".shop-page__banners")
     expect(bannerContainer.childElementCount).toBe(3)

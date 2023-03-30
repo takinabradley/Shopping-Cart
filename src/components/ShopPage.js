@@ -7,10 +7,12 @@ import getMockData from "../scripts/getMockData"
 import ProductCard from "./ProductCard"
 import createBEM from "@takinabradley/bem-names"
 import Block from "./Block"
+import { useOutletContext } from "react-router-dom"
 
 const BEM = createBEM("shop-page")
-export default function ShopPage({ handleAddToCart, modifiers }) {
+export default function ShopPage({ /* handleAddToCart, */ modifiers }) {
   const [productTriplets, setProductTriplets] = useState([])
+  const { handleAddToCart } = useOutletContext()
 
   const toProductBanners = (banners, products, index) => {
     const banner = (

@@ -8,37 +8,69 @@ import {
   toBeVisible,
   toHaveClass
 } from "@testing-library/jest-dom/dist/matchers"
-
+import { MemoryRouter } from "react-router-dom"
+import { Route } from "react-router-dom"
+import { Routes } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+import HomePage from "./HomePage"
+import ShopPage from "./ShopPage"
 it("renders App", () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
 
   const app = screen.getByTestId("app")
   expect(app).toBeInTheDocument()
 })
 
 it("Renders the site header", () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
 
   const siteHeader = screen.getByTestId("site-header")
   expect(siteHeader).toBeInTheDocument()
 })
 
-it("renders home page by default", () => {
-  render(<App />)
+it("renders the outlet", () => {
+  render(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Navigate to="/home" />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+        </Route>
+        <Route path="/*" element={<Navigate to={"/"} />} />
+      </Routes>
+    </MemoryRouter>
+  )
 
   const homePage = screen.getByTestId("home")
   expect(homePage).toBeInTheDocument()
 })
 
 it("renders a cart", () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
 
   const cart = screen.getByTestId("cart")
   expect(cart).toBeInTheDocument()
 })
 
 it("has a closed sidebar by default", () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
 
   const sidebar = screen.getByTestId("app__sidebar")
 
@@ -47,7 +79,11 @@ it("has a closed sidebar by default", () => {
 })
 
 it("opens the sidebar when the open cart button is clicked", () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
 
   const sidebar = screen.getByTestId("app__sidebar")
 
@@ -55,9 +91,20 @@ it("opens the sidebar when the open cart button is clicked", () => {
 })
 
 it("renders the shop page when the Shop link is clicked", async () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Navigate to="/home" />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+        </Route>
+        <Route path="/*" element={<Navigate to={"/"} />} />
+      </Routes>
+    </MemoryRouter>
+  )
 
-  const shopLink = screen.getByText("Shop")
+  const shopLink = screen.getByText("Shop", { exact: true })
   const homePage = screen.getByTestId("home")
   userEvent.click(shopLink)
 
@@ -67,7 +114,18 @@ it("renders the shop page when the Shop link is clicked", async () => {
 })
 
 it("renders the home page again when the Home link is clicked", async () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Navigate to="/home" />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+        </Route>
+        <Route path="/*" element={<Navigate to={"/"} />} />
+      </Routes>
+    </MemoryRouter>
+  )
 
   const shopLink = screen.getByText("Shop")
   const homeLink = screen.getByText("Home")
