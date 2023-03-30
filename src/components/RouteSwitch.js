@@ -4,10 +4,11 @@ import HomePage from "./HomePage"
 import ShopPage from "./ShopPage"
 /* import Home from "./Home"
 import Shop from "./Shop" */
+import { HashRouter } from "react-router-dom"
 
 export default function RouteSwitch() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Navigate to="/home" />} />
@@ -16,6 +17,6 @@ export default function RouteSwitch() {
         </Route>
         <Route path="/*" element={<Navigate to={"/"} />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
